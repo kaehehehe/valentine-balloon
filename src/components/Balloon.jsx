@@ -1,9 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { useGLTF } from "@react-three/drei";
 
-export function Balloon({ delay, color }) {
-  const { scene } = useGLTF("heart-balloon.glb");
+export function Balloon({ delay, color, scene, scale }) {
   const model = scene.clone();
   const modelRef = useRef();
 
@@ -63,7 +61,7 @@ export function Balloon({ delay, color }) {
 
   return (
     <mesh ref={modelRef}>
-      <primitive object={model} scale={[0.5, 0.5, 0.5]} />
+      <primitive object={model} scale={scale} />
     </mesh>
   );
 }
