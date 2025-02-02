@@ -24,7 +24,14 @@ export default function App() {
         return <Balloon key={index} delay={delay} color={color} />;
       })}
       <Environment files="rainbow.hdr" />
-      <OrbitControls minDistance={1} maxDistance={10} />
+      <OrbitControls
+        minDistance={1}
+        maxDistance={10}
+        minPolarAngle={Math.PI / 2}
+        maxPolarAngle={Math.PI / 2}
+        minAzimuthAngle={-Math.PI}
+        maxAzimuthAngle={Math.PI}
+      />
     </Canvas>
   );
 }
