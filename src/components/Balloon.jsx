@@ -5,7 +5,7 @@ export function Balloon({ delay, color, scene, scale }) {
   const model = scene.clone();
   const modelRef = useRef();
 
-  // 初期設定
+  // Initial settings
   const startY = -12;
   const endY = 7;
   const startX = (Math.random() - 0.5) * 10;
@@ -24,7 +24,7 @@ export function Balloon({ delay, color, scene, scale }) {
   useFrame(({ clock }) => {
     const elapsedTime = clock.getElapsedTime();
 
-    // 遅延が終了したら風船が上昇し始める
+    // Once the delay is over, the balloon starts to rise
     if (elapsedTime > delay) {
       updatePosition();
     } else {
@@ -37,7 +37,7 @@ export function Balloon({ delay, color, scene, scale }) {
       position += speed;
       direction += 0.02;
 
-      // 新しい位置を設定
+      // Set the new position
       const xOffset = Math.sin(direction) * 0.2;
       const zOffset = Math.cos(direction) * 0.1;
       modelRef.current.position.set(
