@@ -11,8 +11,8 @@ export default function App() {
   return (
     <Canvas
       camera={{
-        position: [0, 0, 5],
-        fov: 75,
+        position: [0, 0, 10],
+        fov: 45,
         near: 1,
         far: 50,
       }}
@@ -21,24 +21,22 @@ export default function App() {
 
       {CreateBalloon({
         scene: heartBalloon,
-        count: 60,
+        count: 45,
         scale: [0.5, 0.5, 0.5],
       })}
 
       {CreateBalloon({
         scene: loveBalloon,
-        count: 10,
+        count: 5,
         scale: [1.6, 1.6, 1.6],
       })}
 
       <Environment files="rainbow.hdr" />
       <OrbitControls
-        minDistance={1}
+        minDistance={10}
         maxDistance={10}
         minPolarAngle={Math.PI / 2}
         maxPolarAngle={Math.PI / 2}
-        minAzimuthAngle={-Math.PI}
-        maxAzimuthAngle={Math.PI}
       />
     </Canvas>
   );
