@@ -9,9 +9,8 @@ body,
 
 canvas {
   background-image: linear-gradient(
-    103.3deg,
-    rgba(252, 225, 208, 1) 30%,
-    rgba(255, 173, 214, 1) 55.7%,
-    rgba(162, 186, 245, 1) 81.8%
+    174deg,
+    rgba(255, 189, 189, 0.84) -1.1%,
+    rgba(227, 182, 238, 1) 86.9%
   );
 }
