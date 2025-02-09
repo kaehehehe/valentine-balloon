@@ -1,17 +1,18 @@
 import React, { useEffect, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 
+const START_Y = -12;
+const END_Y = 7;
+const POSITION_OFFSET = 10;
+
 export function Balloon({ delay, color, scene, scale }) {
   const model = scene.clone();
   const modelRef = useRef();
 
-  // Initial settings
-  const startY = -12;
-  const endY = 7;
-  const startX = (Math.random() - 0.5) * 10;
-  const startZ = (Math.random() - 0.5) * 10;
+  const startX = (Math.random() - 0.5) * POSITION_OFFSET;
+  const startZ = (Math.random() - 0.5) * POSITION_OFFSET;
 
-  let position = startY;
+  let position = START_Y;
   let direction = Math.random() * Math.PI * 2;
   const speed = Math.random() * 0.02 + 0.02;
 
@@ -23,21 +24,14 @@ export function Balloon({ delay, color, scene, scale }) {
 
   useFrame(({ clock }) => {
     const elapsedTime = clock.getElapsedTime();
-
-    // Once the delay is over, the balloon starts to rise
-    if (elapsedTime > delay) {
-      updatePosition();
-    } else {
-      setInitialPosition();
-    }
+    elapsedTime > delay ? updatePosition() : setInitialPosition();
   });
 
   const updatePosition = () => {
-    if (position < endY) {
+    if (position < END_Y) {
       position += speed;
       direction += 0.02;
 
-      // Set the new position
       const xOffset = Math.sin(direction) * 0.2;
       const zOffset = Math.cos(direction) * 0.1;
       modelRef.current.position.set(
@@ -51,12 +45,12 @@ export function Balloon({ delay, color, scene, scale }) {
   };
 
   const resetPosition = () => {
-    position = startY;
+    position = START_Y;
     modelRef.current.position.set(startX, position, startZ);
   };
 
   const setInitialPosition = () => {
-    modelRef.current.position.set(startX, startY, startZ);
+    modelRef.current.position.set(startX, START_Y, startZ);
   };
 
   return (
