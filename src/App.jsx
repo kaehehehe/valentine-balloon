@@ -1,13 +1,13 @@
 import "./styles.css";
 import React from "react";
 import { Canvas } from "@react-three/fiber";
-import { Environment, OrbitControls, useGLTF } from "@react-three/drei";
+import { Environment, OrbitControls } from "@react-three/drei";
 import { CreateBalloon } from "./components/CreateBalloon";
 
-export default function App() {
-  const { scene: heartBalloon } = useGLTF("heart-balloon.glb");
-  const { scene: loveBalloon } = useGLTF("love-balloon.glb");
+const HEART_BALLOON_PATH = "heart-balloon.glb";
+const LOVE_BALLOON_PATH = "love-balloon.glb";
 
+export default function App() {
   return (
     <Canvas
       camera={{
@@ -19,17 +19,17 @@ export default function App() {
     >
       <pointLight position={[10, 10, 10]} />
 
-      {CreateBalloon({
-        scene: heartBalloon,
-        count: 45,
-        scale: [0.5, 0.5, 0.5],
-      })}
+      <CreateBalloon
+        modelPath={HEART_BALLOON_PATH}
+        count={45}
+        scale={[0.5, 0.5, 0.5]}
+      />
 
-      {CreateBalloon({
-        scene: loveBalloon,
-        count: 5,
-        scale: [1.6, 1.6, 1.6],
-      })}
+      <CreateBalloon
+        modelPath={LOVE_BALLOON_PATH}
+        count={5}
+        scale={[1.6, 1.6, 1.6]}
+      />
 
       <Environment files="rainbow.hdr" />
       <OrbitControls
