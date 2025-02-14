@@ -1,12 +1,13 @@
 import React from "react";
 import { useGLTF } from "@react-three/drei";
 import { Balloon } from "./Balloon";
+import { HEART_BALLOON_PATH } from "../App";
 
 const COLORS = ["#C30010", "#ff69b4", "#C683D7"];
 
 const getColor = (index) => COLORS[index % COLORS.length];
 
-export function CreateBalloon({ modelPath, count, scale }) {
+export function CreateBalloon({ modelPath, count }) {
   const { scene, error } = useGLTF(modelPath);
 
   if (error) {
@@ -18,14 +19,12 @@ export function CreateBalloon({ modelPath, count, scale }) {
     <>
       {Array.from({ length: count }).map((_, index) => {
         const color = getColor(index);
-        const delay = Math.random() * 2;
         return (
           <Balloon
             key={index}
             scene={scene}
-            delay={delay}
             color={color}
-            scale={scale}
+            scale={modelPath === HEART_BALLOON_PATH ? 0.5 : 1.6}
           />
         );
       })}

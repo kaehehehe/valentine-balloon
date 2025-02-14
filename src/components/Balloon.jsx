@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 
 const START_Y = -12;
 const END_Y = 7;
 const POSITION_OFFSET = 10;
 
-export function Balloon({ delay, color, scene, scale }) {
+export function Balloon({ color, scene, scale }) {
   const model = scene.clone();
   const modelRef = useRef();
 
@@ -15,12 +15,11 @@ export function Balloon({ delay, color, scene, scale }) {
   let position = START_Y;
   let direction = Math.random() * Math.PI * 2;
   const speed = Math.random() * 0.02 + 0.02;
+  const delay = Math.random() * 10;
 
-  useEffect(() => {
-    const targetMesh = model.children[0];
-    targetMesh.material = targetMesh.material.clone();
-    targetMesh.material.color.set(color);
-  }, [model, color]);
+  const targetMesh = model.children[0];
+  targetMesh.material = targetMesh.material.clone();
+  targetMesh.material.color.set(color);
 
   useFrame(({ clock }) => {
     const elapsedTime = clock.getElapsedTime();
